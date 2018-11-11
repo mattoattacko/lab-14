@@ -8,13 +8,13 @@ const userSchema = new mongoose.Schema({
   username: {type: String, required: true, unique: true},
   password: {type: String, required: true},
   email: {type: String},
-  role: {type: String, required:true, default:'user', enum:['admin','editor','user'] }
+  role: {type: String, required:true, default:'user', enum:['admin','editor','user'] },
 });
 
 const capabilities = {
   user: ['read'],
   editor: ['read','update'],
-  admin: ['create','read', 'update', 'delete']
+  admin: ['create','read', 'update', 'delete'],
 };
 
 // Before we save, hash the plain text password
@@ -33,7 +33,7 @@ userSchema.pre('save', function(next) {
 
 userSchema.statics.createFromOAuth = function(incoming) {
 
-  if ( ! incoming || ! incoming.email ) {
+  if ( ! incoming ) {
     return Promise.reject('VALIDATION ERROR: missing username/email or password ');
   }
 
@@ -45,7 +45,7 @@ userSchema.statics.createFromOAuth = function(incoming) {
     })
     .catch( error => {
     // Create the user
-      let username = incoming.email;
+      let username = incoming.login;
       let password = 'none';
       return this.create({
         username: username,
