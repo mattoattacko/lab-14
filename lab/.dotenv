@@ -1,8 +1,0 @@
-PORT:3000
-STORAGE=mongo
-MONGODB_URI=mongodb:http://localhost:27017/
-API_URL=http://localhost:3000
-
-GOOGLE_CLIENT_SECRET=BYNSV8i2cZYVT7Z0IxpBY_aE
-GOOGLE_CLIENT_ID=1084119955705-lbv1khmhpc14s9qhq88racig0abm9tsr.apps.googleusercontent.com
-GITHUB_TOKEN=37f008bc61b02bad686428d2c66dc4b15c88e922
